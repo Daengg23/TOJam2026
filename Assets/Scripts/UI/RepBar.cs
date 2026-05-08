@@ -43,7 +43,7 @@ public class RepBar : MonoBehaviour
 
         float newWidth = Reputation / MaxReputation * InitialWidth; //width of rep bar
 
-        float newX = InitialPos.x + 0.5f*((1f - Reputation/MaxReputation)*InitialWidth);
+        float newX = InitialPos.x - 0.5f*((1f - Reputation/MaxReputation)*InitialWidth);
 
         this.RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
         this.RectTransform.anchoredPosition = new Vector2(newX, y);
