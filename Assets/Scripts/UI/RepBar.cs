@@ -5,15 +5,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class RepBar : MonoBehaviour
 {
-    public float MaxReputation = 1500;
-    public float Reputation;
+    public float Percentage;
     public Vector3 InitialPos;
     public RectTransform RectTransform;
     public float InitialWidth;
 
     void Awake()
     {
-        Reputation = MaxReputation;
         this.RectTransform = GetComponent<RectTransform>();
         InitialPos = this.RectTransform.anchoredPosition;
         InitialWidth = this.RectTransform.rect.width;
@@ -25,13 +23,13 @@ public class RepBar : MonoBehaviour
         
     }
 
-    private float prevReputation;
+    private float prevPercentage;
     // Update is called once per frame
     void Update()
     {
 
-        if (prevReputation == Reputation) return;
-        prevReputation = Reputation;
+        if (prevPercentage == Percentage) return;
+        prevPercentage = Percentage;
         
         //convenience
 
@@ -41,9 +39,9 @@ public class RepBar : MonoBehaviour
         float y = this.RectTransform.anchoredPosition.y;
 
 
-        float newWidth = Reputation / MaxReputation * InitialWidth; //width of rep bar
+        float newWidth = Percentage * InitialWidth; //width of rep bar
 
-        float newX = InitialPos.x - 0.5f*((1f - Reputation/MaxReputation)*InitialWidth);
+        float newX = InitialPos.x - 0.5f*((1f - Percentage)*InitialWidth);
 
         this.RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
         this.RectTransform.anchoredPosition = new Vector2(newX, y);

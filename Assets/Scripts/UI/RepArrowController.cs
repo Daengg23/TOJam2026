@@ -13,8 +13,6 @@ public class RepArrowController : MonoBehaviour
     public GameObject TwoArrows;
     public GameObject ThreeArrows;
     public GameObject Checkmark;
-    public GameObject RepMultiplier;
-    public TextMeshPro TextMeshPro;
     /*
      * 0 = checkmark
      * 1 = 1 arrow
@@ -24,16 +22,6 @@ public class RepArrowController : MonoBehaviour
     public int Appearance = 0;
 
     public float GlowSpeed = 1;
-
-    private void Awake()
-    {
-        this.TextMeshPro = RepMultiplier.GetComponent<TextMeshPro>();
-    }
-
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
