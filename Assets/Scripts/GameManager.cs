@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Action<int> OnScoreChanged;
+    public Action OnStartGame;
 
     public enum GameState
     {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     public NotificationManager NotificationManager;
     public MetroCursor MetroCursor;
 
-    public GameState CurrentGameState {get; private set;}
+    public GameState CurrentGameState;
     public int CurrentScore {get; private set;}
 
     public float CalculateTimeToDelay(Station station)
@@ -55,6 +56,18 @@ public class GameManager : MonoBehaviour
         OnScoreChanged?.Invoke(CurrentScore);
     }
 
+    public void StartGame()
+    {
+        if(CurrentGameState == GameState.MetroActive) return;
+        
+        CurrentGameState = GameState.MetroActive;
+
+        NotificationManager.StartDialogue(NotificationManager.TutorialDialogue);
+        
+        OnStartGame?.Invoke();
+    
+    }
+
     public void ResetGame()
     {
         currentDifficulty = baseDifficulty;
@@ -76,7 +89,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-        CurrentGameState = GameState.MetroActive;
     }
 
     void Update()
