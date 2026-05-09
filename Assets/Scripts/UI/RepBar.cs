@@ -5,7 +5,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class RepBar : MonoBehaviour
 {
-    public float Percentage;
+    [SerializeField] //we should set this using SetPercentage
+    private float percentage;
+    public float Percentage { get => percentage; }
     public Vector3 InitialPos;
     public RectTransform RectTransform;
     public float InitialWidth;
@@ -28,8 +30,8 @@ public class RepBar : MonoBehaviour
     void Update()
     {
 
-        if (prevPercentage == Percentage) return;
-        prevPercentage = Percentage;
+        if (prevPercentage == percentage) return;
+        prevPercentage = percentage;
         
         //convenience
 
@@ -39,11 +41,16 @@ public class RepBar : MonoBehaviour
         float y = this.RectTransform.anchoredPosition.y;
 
 
-        float newWidth = Percentage * InitialWidth; //width of rep bar
+        float newWidth = percentage * InitialWidth; //width of rep bar
 
-        float newX = InitialPos.x - 0.5f*((1f - Percentage)*InitialWidth);
+        float newX = InitialPos.x - 0.5f*((1f - percentage)*InitialWidth);
 
         this.RectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
         this.RectTransform.anchoredPosition = new Vector2(newX, y);
+    }
+
+    public void SetPercentage(float percentage)
+    {
+        this.percentage = percentage;
     }
 }
