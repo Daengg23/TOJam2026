@@ -40,7 +40,7 @@ public class RepUIController : MonoBehaviour
 
         //calculate width of the animation 
         float chunkAnimationWidth = repBarInitialWidth * (startPercentage - endPercentage);
-        chunkAnimationRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, chunkAnimationWidth);
+        chunkAnimationRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, chunkAnimationWidth); //set width of chunk
 
         float repBarLeftEdgePos = repBarInitialPos.x - (repBarInitialWidth / 2);
         float repBarRemainingRightEdgePos = repBarLeftEdgePos + (repBarInitialWidth * endPercentage);
