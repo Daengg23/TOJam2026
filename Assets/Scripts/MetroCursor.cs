@@ -87,14 +87,30 @@ public class MetroCursor : MonoBehaviour
         if(selectedStations.Count == 0) return;
 
         // Start the minigame here
+        MinigameManager.Instance.StartMinigameForStations(
+            selectedStations, 
+            Station.Minigame.FixEngine, //TODO replace with the selected one
+            onFinish
+            );
 
         // Code after the minigame
-        foreach(var station in selectedStations)
-        {
-            station.ResetStation();
-        }
 
-        ResetStationChain();
+        void onFinish(MinigameStatus status) {
+            if (status == MinigameStatus.Win)
+            {
+                foreach (var station in selectedStations)
+                {
+                    station.ResetStation();
+                }
+                ResetStationChain();
+                Debug.Log("MetroCursor: WON THE MINIGAME");
+            }
+            else
+            {
+                Debug.Log("MetroCursor: LOST THE MINIGAME");
+            }
+        }
+        
     }
 
     public void PointerEnter(PointerEventData eventData, GameObject go)

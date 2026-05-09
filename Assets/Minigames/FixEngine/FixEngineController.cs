@@ -1,0 +1,128 @@
+using Mono.Cecil;
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class FixEngineController : MonoBehaviour
+{
+
+    public List<MouseReporter> MouseReporters = new List<MouseReporter>();
+    public MouseReporter StartMouseReporter;
+    public MouseReporter EndMouseReporter;
+    public GameObject SegmentPrefab;
+    public GameObject DebugPointPrefab;
+    public MinigameTransponder minigameTransponder;
+
+    private void Awake()
+    {
+        minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        GenerateMaze();
+
+        MouseReporters.AddRange(FindObjectsByType<MouseReporter>());
+    }
+
+    int state = 0; //0 = not started, 1 = started, 2 = finished, 3 = nothing
+    void Update()
+    {
+        bool isTouchingStart = StartMouseReporter.IsMouseOver;
+        bool isTouchingEnd = EndMouseReporter.IsMouseOver;
+        bool isTouchingAnyMouseReporter = false;
+        foreach(var mr in MouseReporters) {
+            if(mr.IsMouseOver)
+            {
+                isTouchingAnyMouseReporter = true;
+                break;
+            }
+        }
+
+        if (state == 0)
+        {
+            if (isTouchingStart)
+            {
+                //TODO: MOUSE MAZE GO!!
+                Debug.Log("MOUSE MAZE GO");
+                state = 1;
+            }
+        }
+        if(state == 1)
+        {
+            if (!isTouchingAnyMouseReporter)
+            {
+                state = 2;
+                minigameTransponder.Finish(MinigameStatus.Loss);
+            }
+            if (isTouchingEnd)
+            {
+                state = 2;
+                minigameTransponder.Finish(MinigameStatus.Win);
+            }
+
+        }
+        if(state == 2)
+        {
+            Debug.Log("MOUSE MAZE FINISHED");
+            state = 3;
+        }
+    }
+
+    void GenerateMaze()
+    {
+
+        const float xDistanceFromMazeEnd = 12f;
+
+        int segments = 3;
+
+        float startRandomY = Random.Range(-1f, 1f) * 4f;
+        //the start object is shifted up or down the screen a random amount
+        StartMouseReporter.transform.position = new Vector3(StartMouseReporter.transform.position.x, startRandomY, StartMouseReporter.transform.position.z);
+
+        //the end object is shifted up or down the screen a random amount
+        float endRandomY = Random.Range(-1f, 1f) * 4f;
+        EndMouseReporter.transform.position = new Vector3(EndMouseReporter.transform.position.x, endRandomY, EndMouseReporter.transform.position.z);
+
+        Vector2 startPos = StartMouseReporter.transform.position;
+        Vector2 endPos = EndMouseReporter.transform.position;
+
+        Vector2 prevPoint = startPos; //used to track the end pos of the last segment
+        for (int i = 0; i < segments; i++)
+        {
+
+            float width = 0.5f; //TODO randomize this
+
+            float randomXToTheLeft = xDistanceFromMazeEnd / segments * Random.Range(0f, 1.5f);
+            Vector2 nextPoint = new Vector2(prevPoint.x - randomXToTheLeft, Random.Range(-1f, 1f) * 4f); //TODO bell curve distribute the Y offset
+
+            if (i == segments - 1) //last segment should go to the end segment
+            {
+                nextPoint = EndMouseReporter.transform.position;
+            }
+
+            //TODO generate the rectangle that connects from previous point to next point
+            Vector2 midpoint = prevPoint + (nextPoint - prevPoint) / 2;
+            var segmentGO = Instantiate(SegmentPrefab);
+            segmentGO.transform.position = midpoint;
+            segmentGO.transform.localScale = new Vector3((prevPoint - nextPoint).magnitude, segmentGO.transform.localScale.y, segmentGO.transform.localScale.z);
+
+            //point at the next point
+            Vector2 diff = nextPoint - prevPoint;
+            diff.Normalize();
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            segmentGO.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 180); //point at the next point
+
+            segmentGO.SetActive(true);
+
+            ////DEBUG
+            //var dbg = Instantiate(DebugPointPrefab);
+            //dbg.transform.position = nextPoint;
+
+            prevPoint = nextPoint; //put this at the end 
+        }
+    }
+}

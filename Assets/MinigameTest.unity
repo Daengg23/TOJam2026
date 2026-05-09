@@ -1788,6 +1788,7 @@ GameObject:
   - component: {fileID: 938561001}
   - component: {fileID: 938561003}
   - component: {fileID: 938561004}
+  - component: {fileID: 938561005}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1901,6 +1902,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbd60cd36b68476fbe749b39782f3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroCursor
+--- !u!114 &938561005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938560997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280d65064013a8a49937358848e22d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
 --- !u!1 &946644778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,7 +2993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2128164541
 RectTransform:
   m_ObjectHideFlags: 0

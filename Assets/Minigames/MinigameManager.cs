@@ -14,14 +14,15 @@ public class MinigameManager : MonoBehaviour
 {
     public static MinigameManager Instance;
 
-    List<MinigameInstance> ActiveMinigames;
+    List<MinigameInstance> ActiveMinigames = new List<MinigameInstance>();
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void StartMinigameForStations(IEnumerable<Station> stations, Station.Minigame type)
+    //TODO do we really even need the relevant stations
+    public void StartMinigameForStations(IEnumerable<Station> stations, Station.Minigame type, Action<MinigameStatus> onFinish)
     {
         //TODO set up the scene by adding an a GameObject with a MinigameController
 
@@ -33,35 +34,42 @@ public class MinigameManager : MonoBehaviour
             _ => "UNKNOWN need to implement"
         };
 
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-        UnityEngine.SceneManagement.Scene minigame = SceneManager.GetSceneByName(sceneName);
-
         var transponderGO = new GameObject("MinigameTransponder");
+        transponderGO.SetActive(false); //prevent Awake() from triggering too early
         var transponder = transponderGO.AddComponent<MinigameTransponder>();
         transponder.MinigameManager = this;
 
-        SceneManager.MoveGameObjectToScene(transponderGO, minigame);
+        //scene should be loaded AFTER we make the GO
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        UnityEngine.SceneManagement.Scene minigame = SceneManager.GetSceneByName(sceneName);
 
-        //ActiveMinigames.Add(new MinigameInstance()); //TODO
+        SceneManager.MoveGameObjectToScene(transponderGO, minigame);
+        transponderGO.SetActive(true);
+
+        ActiveMinigames.Add(new MinigameInstance(transponder, stations, onFinish)); //TODO
     }
 
-    public void MinigameFinished(MinigameTransponder minigameController, MinigameStatus status)
+    public void MinigameFinished(MinigameTransponder minigameTransponder, MinigameStatus status)
     {
         //find the MinigameInstance corresponding to the MinigameController
-        var minigameInstance = ActiveMinigames.Single(x => x.MinigameController == minigameController);
+        var minigameInstance = ActiveMinigames.Single(x => x.MinigameTransponder == minigameTransponder);
 
-        //TODO act on relevant stations acording to status
+        minigameInstance.OnFinishAction(status);
+
+        ActiveMinigames.Remove(minigameInstance);
     }
 
     class MinigameInstance
     {
-        public MinigameTransponder MinigameController;
+        public MinigameTransponder MinigameTransponder;
         public IEnumerable<Station> RelevantStations;
+        public Action<MinigameStatus> OnFinishAction;
 
-        public MinigameInstance(MinigameTransponder minigameController, IEnumerable<Station> relevantStations)
+        public MinigameInstance(MinigameTransponder minigameController, IEnumerable<Station> relevantStations, Action<MinigameStatus> onFinishAction)
         {
-            MinigameController = minigameController;
+            MinigameTransponder = minigameController;
             RelevantStations = relevantStations;
+            OnFinishAction = onFinishAction;
         }
     }
 }
