@@ -87,7 +87,7 @@ public class MetroCursor : MonoBehaviour
         if(selectedStations.Count == 0) return;
 
         // Start the minigame here
-        MinigameManager.Instance.StartMinigameForStations(
+        _ = MinigameManager.Instance.StartMinigameForStations( //no need to await
             selectedStations, 
             Station.Minigame.FixEngine, //TODO replace with the selected one
             onFinish

@@ -9,6 +9,7 @@ public class MouseReporter : MonoBehaviour
     public Action<MouseReporter> OnMouseDownEvent;
     public Action<MouseReporter> OnMouseUpEvent;
     public bool IsMouseOver = false;
+    public bool IsBeingClicked = false;
 
     private void OnMouseEnter()
     {
@@ -22,10 +23,12 @@ public class MouseReporter : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        IsBeingClicked = true;
         this.OnMouseDownEvent?.Invoke(this);
     }
     private void OnMouseUp()
     {
+        IsBeingClicked = false;
         this.OnMouseUpEvent?.Invoke(this);
     }
 
