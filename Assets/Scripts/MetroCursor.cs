@@ -19,7 +19,7 @@ public class MetroCursor : MonoBehaviour
     public void ResetStationChain()
     {
         if(metro == null) return;
-        DemphasizeAllSimilarMinigames();
+        RemoveEmphasisAllStations();
         foreach(var station in metro.Stations)
         {
             station.HideMarked();
@@ -29,24 +29,27 @@ public class MetroCursor : MonoBehaviour
 
     void EmphasizeAllSimilarMinigames()
     {
-        if(metro == null) return;
+        if(metro == null || selectedStations.Count == 0) return;
 
         foreach(var station in metro.Stations)
         {
             if(station.CurrentMinigame == selectedStations[0].CurrentMinigame)
             {
                 station.EmphasizeStation();
+            } else
+            {
+                station.DemphasizeStation();
             }
         }
     }
 
-    void DemphasizeAllSimilarMinigames()
+    void RemoveEmphasisAllStations()
     {
         if(metro == null) return;
 
         foreach(var station in metro.Stations)
         {
-            station.DemphasizeStation();
+            station.RemoveEmphasisStation();
         }
     }
 
@@ -55,6 +58,7 @@ public class MetroCursor : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             holdActive = true;
+            EmphasizeAllSimilarMinigames();
         }
         //left click release
         if(Input.GetMouseButtonUp(0))
@@ -69,9 +73,7 @@ public class MetroCursor : MonoBehaviour
         if(selectedStations.Count == 0)
         {
             MarkStation(firstStation);
-            EmphasizeAllSimilarMinigames();
         }
-        Debug.Log("STATION CHAIN START");
     }
 
     public void MarkStation(Station station)
@@ -93,12 +95,11 @@ public class MetroCursor : MonoBehaviour
         }
 
         ResetStationChain();
-        Debug.Log("STATION CHAIN STOP");
     }
 
     public void PointerEnter(PointerEventData eventData, GameObject go)
     {
-        Debug.Log(eventData.pointerEnter);
+        if(!holdActive) return;
 
         Station station;
         if(station = go.GetComponent<Station>())
@@ -110,15 +111,11 @@ public class MetroCursor : MonoBehaviour
         }
     }
 
-    public void PointerClick(PointerEventData eventData, GameObject go)
+    public void ClickStation(Station station)
     {
-        Station station;
-        if(station = go.GetComponent<Station>())
+        if(selectedStations.Count == 0 && (station.CurrentState == Station.StationState.Troubled || station.CurrentState == Station.StationState.Delayed))
         {
-            if(selectedStations.Count == 0)
-            {
-                StartStationChain(station);
-            }
+            StartStationChain(station);
         }
     }
 
