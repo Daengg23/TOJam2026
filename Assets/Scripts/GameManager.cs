@@ -1,5 +1,7 @@
 using System;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Acts as the manger of the game and the contains all references to important game components
 public class GameManager : MonoBehaviour
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
         Metro.ResetAllStations();
         MetroCursor.ResetStationChain();
 
+        MinigameManager.Instance.UnloadAllScenes();
     }
 
     void Awake()

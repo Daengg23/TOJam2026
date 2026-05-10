@@ -10,6 +10,8 @@ public class MetroCursor : MonoBehaviour
 
     bool holdActive = false;
 
+    bool minigameActive = false;
+
     void Start()
     {
         metro = GameManager.Instance.Metro; 
@@ -17,6 +19,7 @@ public class MetroCursor : MonoBehaviour
 
     public void ResetStationChain()
     {
+        minigameActive = false;
         if(metro == null) return;
         RemoveEmphasisAllStations();
         foreach(var station in metro.Stations)
@@ -83,6 +86,8 @@ public class MetroCursor : MonoBehaviour
 
     public void StopStationChain()
     {
+
+        if (minigameActive) return;
         if(selectedStations.Count == 0) return;
 
         // Start the minigame here
@@ -92,9 +97,14 @@ public class MetroCursor : MonoBehaviour
             onFinish
             );
 
+        minigameActive = true;
+
         // Code after the minigame
 
         void onFinish(MinigameStatus status) {
+
+            minigameActive = false;
+
             if (status == MinigameStatus.Win)
             {
                 foreach (var station in selectedStations)

@@ -54,6 +54,17 @@ public class MinigameManager : MonoBehaviour
         SceneManager.SetActiveScene(minigame);
     }
 
+    public void UnloadAllScenes()
+    {
+        for (int i = ActiveMinigames.Count-1; i >= 0; i--)
+        {
+            var s = ActiveMinigames[i];
+
+            SceneManager.UnloadSceneAsync(s.SceneName);
+            ActiveMinigames.Remove(s);
+        }
+    }
+
     public void MinigameFinished(MinigameTransponder minigameTransponder, MinigameStatus status)
     {
         //find the MinigameInstance corresponding to the MinigameController
