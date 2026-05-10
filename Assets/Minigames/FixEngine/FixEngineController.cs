@@ -2,6 +2,7 @@ using Mono.Cecil;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,9 +16,15 @@ public class FixEngineController : MonoBehaviour
     public GameObject DebugPointPrefab;
     public MinigameTransponder minigameTransponder;
 
+    public GameObject BigCheckmark;
+    public GameObject BigX;
+    public TextMeshPro InstructionText;
+
+    public GameObject Screwdriver;
+
     private void Awake()
     {
-        minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
+        //minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,12 +35,14 @@ public class FixEngineController : MonoBehaviour
         MouseReporters.AddRange(FindObjectsByType<MouseReporter>());
     }
 
-    int state = 0; //0 = not started, 1 = started, 2 = finished, 3 = nothing
+    public float EndAnimationTimer = 1f;
+    int state = 0; //-2 means loss
     void Update()
     {
         bool isTouchingStart = StartMouseReporter.IsMouseOver;
         bool isTouchingEnd = EndMouseReporter.IsMouseOver;
         bool isTouchingAnyMouseReporter = false;
+        bool isMouseDownOnAnyMR = false;
         foreach(var mr in MouseReporters) {
             if(mr.IsMouseOver)
             {
@@ -41,34 +50,81 @@ public class FixEngineController : MonoBehaviour
                 break;
             }
         }
+        foreach (var mr in MouseReporters)
+        {
+            if (mr.IsBeingClicked)
+            {
+                isMouseDownOnAnyMR = true;
+            }
+        }
+
+        if(state == 2)
+        {
+            //dont follow mouse
+        } else
+        {
+            //follow mouse
+            var mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Screwdriver.transform.position = new Vector3(mousePosition.x, mousePosition.y, -5);
+        }
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            Screwdriver.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        } else
+        {
+            Screwdriver.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
 
         if (state == 0)
         {
-            if (isTouchingStart)
-            {
-                //TODO: MOUSE MAZE GO!!
-                Debug.Log("MOUSE MAZE GO");
+            if (isTouchingStart && StartMouseReporter.IsBeingClicked)
+                {
+                    //TODO: MOUSE MAZE GO!!
+                    InstructionText.SetText("Keep holding and drag the cursor to END without leaving the highlighted path.");
+                    //Debug.Log("MOUSE MAZE GO");
                 state = 1;
             }
         }
         if(state == 1)
         {
+            //mouse was let go but we're not at the end yet
+            if(!isTouchingEnd && !isMouseDownOnAnyMR)
+            {
+                state = -2;
+            }
+            //we left the path
             if (!isTouchingAnyMouseReporter)
             {
-                state = 2;
-                minigameTransponder.Finish(MinigameStatus.Loss);
+                state = -2;
             }
+            //we got to the end!!
             if (isTouchingEnd)
             {
                 state = 2;
-                minigameTransponder.Finish(MinigameStatus.Win);
             }
 
         }
-        if(state == 2)
+
+        if(state == 2) //WIN!!
         {
-            Debug.Log("MOUSE MAZE FINISHED");
-            state = 3;
+            BigCheckmark.SetActive(true);
+            InstructionText.SetText("SUCCESS");
+            EndAnimationTimer -= Time.deltaTime;
+            if (EndAnimationTimer < 0)
+            {
+                minigameTransponder.Finish(MinigameStatus.Win);
+            }
+        }
+        if(state == -2)
+        {
+            BigX.SetActive(true);
+            InstructionText.SetText("FAILURE");
+            EndAnimationTimer -= Time.deltaTime;
+            if(EndAnimationTimer < 0)
+            {
+                minigameTransponder.Finish(MinigameStatus.Loss);
+            }
         }
     }
 
