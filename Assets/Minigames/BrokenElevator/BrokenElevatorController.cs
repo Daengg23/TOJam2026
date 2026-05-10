@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class BrokenElevatorController : MonoBehaviour
 {
     public List<MouseReporter> MouseReporters = new List<MouseReporter>();
@@ -36,6 +37,9 @@ public class BrokenElevatorController : MonoBehaviour
     public GameObject Boom;
 
     public TextMeshPro InstructionsText;
+
+    public AudioClip OnWin;
+    public AudioClip OnLose;
 
     private void Awake()
     {
@@ -122,6 +126,7 @@ public class BrokenElevatorController : MonoBehaviour
                 stage++;
             } else
             {
+                GetComponent<AudioSource>().PlayOneShot(OnLose, 0.5f);
                 stage = -2;
             }
         }
@@ -162,6 +167,7 @@ public class BrokenElevatorController : MonoBehaviour
             }
             else
             {
+                GetComponent<AudioSource>().PlayOneShot(OnLose, 0.5f);
                 stage = -2;
             }
         }
@@ -199,9 +205,11 @@ public class BrokenElevatorController : MonoBehaviour
                 Checkmark3.SetActive(true);
                 Screw3.SetActive(false);
                 stage++;
+                GetComponent<AudioSource>().PlayOneShot(OnWin);
             }
             else
             {
+                GetComponent<AudioSource>().PlayOneShot(OnLose, 0.5f);
                 stage = -2;
             }
         }

@@ -41,6 +41,7 @@ public class ReputationManager : MonoBehaviour
         bool repLossed = false;
         float totalRepLossed = 0f;
 
+        
         foreach(var station in metro.Stations)
         {
             float repLoss = station.EvaluateReputationLoss(BaseMultiplier);
@@ -49,7 +50,28 @@ public class ReputationManager : MonoBehaviour
             totalRepLossed += repLoss;
         }
 
-        if(repLossed) {
+        //Debug.Log(totalRepLossed);
+
+        if (totalRepLossed <= 3)
+        {
+            RepUIController.RepArrowController.Appearance = 3;
+        }
+        if (totalRepLossed <= 2)
+        {
+            RepUIController.RepArrowController.Appearance = 2;
+        }
+        if (totalRepLossed <= 1)
+        {
+            RepUIController.RepArrowController.Appearance = 1;
+        }
+        if (totalRepLossed <= 0)
+        {
+            RepUIController.RepArrowController.Appearance = 0;
+        }
+        RepUIController.TextMeshProUGUI.SetText($"{totalRepLossed.ToString("0.0")}x");
+
+
+        if (repLossed) {
             OnReputationChanged?.Invoke();
         }
 
