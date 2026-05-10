@@ -20,9 +20,10 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public enum Minigame
     {
         None,
-        CleanupTrack,
+        //CleanupTrack,
         FixEngine,
-        CatchPassenger
+        FixElevator
+        //CatchPassenger
     }
 
     public enum StationState {
@@ -108,14 +109,17 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             case Minigame.None:
                 minigameText.text = "";
                 break;
-            case Minigame.CleanupTrack:
-                minigameText.text = "CL";
-                break;
+            //case Minigame.CleanupTrack:
+            //    minigameText.text = "CL";
+            //    break;
             case Minigame.FixEngine:
-                minigameText.text = "F";
+                minigameText.text = "T";
                 break;
-            case Minigame.CatchPassenger:
-                minigameText.text = "C";
+            //case Minigame.CatchPassenger:
+            //    minigameText.text = "C";
+            //    break;
+            case Minigame.FixElevator:
+                minigameText.text = "E";
                 break;
         }
     }
@@ -132,7 +136,7 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void PickMinigame()
     {
-        int ranInt = Random.Range(1, 2);
+        int ranInt = Random.Range(1, 3);
         SetMinigame((Minigame) ranInt);
         OnMinigamePicked?.Invoke(this);
     }

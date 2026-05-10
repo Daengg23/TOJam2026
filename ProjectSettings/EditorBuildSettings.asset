@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Minigames/FixEngine/FixEngine.unity
     guid: 9304583216d161849be27aed1dcab24f
+  - enabled: 1
+    path: Assets/Minigames/BrokenElevator/BrokenElevator.unity
+    guid: 2bf49e069d19cd949ad05d2cf55a393a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

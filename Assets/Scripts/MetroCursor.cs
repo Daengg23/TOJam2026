@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class MetroCursor : MonoBehaviour
 {
-    private Station.Minigame selectedMinigame;
     private List<Station> selectedStations = new();
     private Metro metro;
 
@@ -88,8 +87,8 @@ public class MetroCursor : MonoBehaviour
 
         // Start the minigame here
         _ = MinigameManager.Instance.StartMinigameForStations( //no need to await
-            selectedStations, 
-            Station.Minigame.FixEngine, //TODO replace with the selected one
+            selectedStations,
+            selectedStations[0].CurrentMinigame, //TODO replace with the selected one
             onFinish
             );
 

@@ -29,9 +29,10 @@ public class MinigameManager : MonoBehaviour
 
         string sceneName = type switch
         {
-            Station.Minigame.CleanupTrack => "RemoveFromTrack",
+            //Station.Minigame.CleanupTrack => "RemoveFromTrack",
             Station.Minigame.FixEngine => "FixEngine",
-            Station.Minigame.CatchPassenger => "CatchPassenger",
+            Station.Minigame.FixElevator => "BrokenElevator",
+            //Station.Minigame.CatchPassenger => "CatchPassenger",
             _ => "UNKNOWN need to implement"
         };
 
