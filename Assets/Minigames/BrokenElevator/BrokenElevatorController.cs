@@ -55,7 +55,7 @@ public class BrokenElevatorController : MonoBehaviour
     void IncreasePBPercentage()
     {
         //first float controls how fast it starts off, second how much it accelerates
-        pbPercentage += Time.deltaTime * 0.1f * (1f+pbPercentage*25);
+        pbPercentage += Time.deltaTime * 0.047f * (1f+pbPercentage*50);
     }
 
     [SerializeField]
