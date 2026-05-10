@@ -50,7 +50,7 @@ public class ReputationManager : MonoBehaviour
             totalRepLossed += repLoss;
         }
 
-        Debug.Log(totalRepLossed);
+        //Debug.Log(totalRepLossed);
 
         if (totalRepLossed <= 3)
         {

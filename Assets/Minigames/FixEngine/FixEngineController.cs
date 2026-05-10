@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class FixEngineController : MonoBehaviour
 {
 
@@ -23,6 +24,9 @@ public class FixEngineController : MonoBehaviour
     public GameObject Screwdriver;
 
     public GameObject Boom;
+
+    public AudioClip OnWin;
+    public AudioClip OnLose;
 
     private void Awake()
     {
@@ -98,17 +102,20 @@ public class FixEngineController : MonoBehaviour
                 rb.gravityScale = 1.3f;
                 rb.AddTorque(120);
                 state = -2;
+                GetComponent<AudioSource>().PlayOneShot(OnLose, 0.5f);
             }
             //we left the path
             if (!isTouchingAnyMouseReporter)
             {
                 BoomAtMousePos();
                 state = -2;
+                GetComponent<AudioSource>().PlayOneShot(OnLose, 0.5f);
             }
             //we got to the end!!
             if (isTouchingEnd)
             {
                 state = 2;
+                GetComponent<AudioSource>().PlayOneShot(OnWin);
             }
 
         }

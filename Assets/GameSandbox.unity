@@ -4246,6 +4246,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1639056045}
     m_Modifications:
+    - target: {fileID: 1378064529709254863, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1679381842604589182, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -356.3
@@ -4346,6 +4350,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3249762134184655766, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -291.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606987788774075537, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4382379139350849123, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
       propertyPath: TextMeshProUGUI
       value: 
@@ -4353,6 +4365,14 @@ PrefabInstance:
     - target: {fileID: 4708481598999339021, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
       propertyPath: m_Name
       value: TopBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898848115576778287, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 128.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841051383501535788, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -253.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

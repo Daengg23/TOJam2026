@@ -26,12 +26,16 @@ public class RepUIController : MonoBehaviour
         if (endPercentage > startPercentage) Debug.LogError($"{nameof(AnimateRemoveRepChunk)}: endPercentage should not be greater than StartPercentage");
 
         GameObject animationGO = Instantiate(RepBarChunkPrefab);
+        //animationGO.transform.SetParent(RepBar.transform.parent, worldPositionStays: false);
         animationGO.transform.parent = RepBar.transform.parent;
 
         //we need the initial values values of the rep bar
         RepBar repBar = RepBar.GetComponent<RepBar>();
         float repBarInitialWidth = repBar.InitialWidth;
         Vector3 repBarInitialPos = repBar.InitialPos;
+
+        Debug.Log(repBarInitialWidth);
+
 
         RepChunkAnimation chunkAnimationScript = animationGO.GetComponent<RepChunkAnimation>();
         RectTransform chunkAnimationRectTransform = animationGO.GetComponent<RectTransform>();
