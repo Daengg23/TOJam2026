@@ -17,9 +17,13 @@ public class BrokenElevatorController : MonoBehaviour
     public GameObject PowerBarOptimal;
     public GameObject PowerBar;
 
+    public GameObject Checkmark1;
+    public GameObject Checkmark2;
+    public GameObject Checkmark3;
+
     private void Awake()
     {
-        //minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
+        minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
     }
 
     Vector3 powerBarBgPos;
@@ -40,7 +44,9 @@ public class BrokenElevatorController : MonoBehaviour
         pbPercentage += Time.deltaTime * 0.1f * (1f+pbPercentage*25);
     }
 
+    [SerializeField]
     float minPercentage;
+    [SerializeField]
     float maxPercentage;
     [SerializeField]
     float pbPercentage = 0f;
@@ -48,10 +54,11 @@ public class BrokenElevatorController : MonoBehaviour
     int stage = -1; //-2 specifically is loss
     void Update()
     {
-        if (stage == -1)
+
+        if(stage == -1)
         {
-            //TODO make the optimal percentage shrink based on difficulty
-            GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+            GenerateOptimalPercentage(Random.Range(0.1f, 0.5f));
+            stage++;
         }
 
         if (stage == 0) //wait for pb click
@@ -81,6 +88,7 @@ public class BrokenElevatorController : MonoBehaviour
                 GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
+                Checkmark1.SetActive(true);
                 stage++;
             } else
             {
@@ -89,25 +97,83 @@ public class BrokenElevatorController : MonoBehaviour
         }
         if(stage == 3) //wait for pb click 
         {
-
+            if (PowerBarBgMR.IsBeingClicked)
+            {
+                pbPercentage = 0f;
+                SetBarPercentage(0.02f);
+                stage++;
+            }
         }
         if(stage == 4) //pb being clicked 
         {
-
+            if (PowerBarBgMR.IsBeingClicked)
+            {
+                IncreasePBPercentage();
+                SetBarPercentage(pbPercentage);
+            }
+            else
+            {
+                stage++;
+            }
         }
         if(stage == 5) //evaluate result 2
         {
-
+            if (pbPercentage > minPercentage && pbPercentage < maxPercentage)
+            {
+                GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+                pbPercentage = 0f;
+                SetBarPercentage(0.02f);
+                Checkmark2.SetActive(true);
+                stage++;
+            }
+            else
+            {
+                stage = -2;
+            }
         }
-        if(stage == 6) //
+        if(stage == 6) //wait for pb click
         {
-
+            if (PowerBarBgMR.IsBeingClicked)
+            {
+                pbPercentage = 0f;
+                SetBarPercentage(0.02f);
+                stage++;
+            }
         }
-
-
-            if (stage == 1)
+        if(stage == 7) //pb being clicked
         {
-
+            if (PowerBarBgMR.IsBeingClicked)
+            {
+                IncreasePBPercentage();
+                SetBarPercentage(pbPercentage);
+            }
+            else
+            {
+                stage++;
+            }
+        }
+        if(stage == 8) //evaluate result 3
+        {
+            if (pbPercentage > minPercentage && pbPercentage < maxPercentage)
+            {
+                GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+                pbPercentage = 0f;
+                SetBarPercentage(0.02f);
+                Checkmark3.SetActive(true);
+                stage++;
+            }
+            else
+            {
+                stage = -2;
+            }
+        }
+        if(stage == 9) //victory
+        {
+            minigameTransponder.Finish(MinigameStatus.Win);
+        }
+        if(stage == -2)
+        {
+            minigameTransponder.Finish(MinigameStatus.Loss);
         }
     }
 
@@ -168,6 +234,8 @@ public class BrokenElevatorController : MonoBehaviour
         float minOptimalPercentage = randomCenterPercentage - percentage / 2;
         float maxOptimalPercentage = randomCenterPercentage + percentage / 2;
 
+        Debug.Log(minOptimalPercentage);
+        Debug.Log(maxOptimalPercentage);
         minPercentage = minOptimalPercentage;
         maxPercentage = maxOptimalPercentage;
     }
