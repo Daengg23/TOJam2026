@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public class BrokenElevatorController : MonoBehaviour
@@ -30,36 +31,104 @@ public class BrokenElevatorController : MonoBehaviour
         powerBarBgHeight = PowerBarBg.transform.localScale.y;
         powerBarBgBottomY = PowerBarBg.transform.position.y - (powerBarBgHeight / 2f);
         MouseReporters.AddRange(FindObjectsByType<MouseReporter>());
-
-        //TODO make the optimal percentage shrink based on difficulty
-        GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
     }
 
-    /* state 
-     * 0 = waiting to start screw 1
-     * 1 = doing screw 1
-     * 2 = waiting to start screw 2
-     * 3 = doing screw 2
-     * 4 = waiting to start screw 3
-     * 5 = doing screw 3
-     * 6 = done
-     * 7 = nothing
-     */
-    int state = 0;
+    //bar goes up faster at higher %
+    void IncreasePBPercentage()
+    {
+        //first float controls how fast it starts off, second how much it accelerates
+        pbPercentage += Time.deltaTime * 0.1f * (1f+pbPercentage*25);
+    }
+
+    float minPercentage;
+    float maxPercentage;
+    [SerializeField]
+    float pbPercentage = 0f;
+    [SerializeField]
+    int stage = -1; //-2 specifically is loss
     void Update()
     {
+        if (stage == -1)
+        {
+            //TODO make the optimal percentage shrink based on difficulty
+            GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+        }
 
-        if (state == 0)
+        if (stage == 0) //wait for pb click
         {
             if (PowerBarBgMR.IsBeingClicked)
             {
-                state = 1;
+                pbPercentage = 0f;
+                SetBarPercentage(0.02f);
+                stage++;
             }
         }
-        if(state == 1)
+        if(stage == 1) //pb being clicked
+        {
+            if (PowerBarBgMR.IsBeingClicked)
+            {
+                IncreasePBPercentage();
+                SetBarPercentage(pbPercentage);
+            } else
+            {
+                stage++;
+            }
+        }
+        if (stage == 2) //evaluate result 1
+        {
+            if(pbPercentage > minPercentage && pbPercentage < maxPercentage)
+            {
+                GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+                pbPercentage = 0f;
+                SetBarPercentage(0.02f);
+                stage++;
+            } else
+            {
+                stage = -2;
+            }
+        }
+        if(stage == 3) //wait for pb click 
         {
 
         }
+        if(stage == 4) //pb being clicked 
+        {
+
+        }
+        if(stage == 5) //evaluate result 2
+        {
+
+        }
+        if(stage == 6) //
+        {
+
+        }
+
+
+            if (stage == 1)
+        {
+
+        }
+    }
+
+    void SetBarPercentage(float percentage)
+    {
+        if (percentage < 0f || percentage > 1f) throw new ArgumentException("percentage must be in [0 1]");
+
+        float pbBgHeight = powerBarBgHeight;
+
+        Vector3 PBScale = PowerBar.transform.localScale;
+        Vector3 PBPos = PowerBar.transform.position;
+
+        Vector3 PBScaleNew = new Vector3(PBScale.x, pbBgHeight * percentage, PBScale.z);
+
+        float PBYNew = powerBarBgBottomY + PBScaleNew.y/2;
+
+        Vector3 PBPosNew = new Vector3(PBPos.x, PBYNew, PBPos.z);
+
+        PowerBar.transform.position = PBPosNew;
+        PowerBar.transform.localScale = PBScaleNew;
+
     }
 
     /// <summary>
@@ -68,7 +137,7 @@ public class BrokenElevatorController : MonoBehaviour
     /// <param name="percentage"></param>
     /// <returns>float1: min optimal %, float2: max optimal %</returns>
     /// <exception cref="ArgumentException"></exception>
-    (float, float) GenerateOptimalPercentage(float percentage)
+    void GenerateOptimalPercentage(float percentage)
     {
         if (percentage <= 0f || percentage > 1f) throw new ArgumentException("percentage must be in (0 1]");
 
@@ -76,7 +145,8 @@ public class BrokenElevatorController : MonoBehaviour
 
         float randomLimit = percentage / 2;
 
-        float randomCenterPercentage = Random.Range(randomLimit, 1-randomLimit);
+        //picked 0.9f instead of 1f because it's very annoying if it's at the end
+        float randomCenterPercentage = Random.Range(randomLimit, 0.9f-randomLimit);
 
         float randomY = randomCenterPercentage * powerBarBgHeight + powerBarBgBottomY;
 
@@ -98,6 +168,7 @@ public class BrokenElevatorController : MonoBehaviour
         float minOptimalPercentage = randomCenterPercentage - percentage / 2;
         float maxOptimalPercentage = randomCenterPercentage + percentage / 2;
 
-        return (minOptimalPercentage, maxOptimalPercentage);
+        minPercentage = minOptimalPercentage;
+        maxPercentage = maxOptimalPercentage;
     }
 }
