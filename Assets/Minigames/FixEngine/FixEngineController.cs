@@ -22,6 +22,8 @@ public class FixEngineController : MonoBehaviour
 
     public GameObject Screwdriver;
 
+    public GameObject Boom;
+
     private void Awake()
     {
         //minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
@@ -58,16 +60,17 @@ public class FixEngineController : MonoBehaviour
             }
         }
 
-        if(state == 2)
+        var mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (state == 2 || state == -2)
         {
             //dont follow mouse
         } else
         {
             //follow mouse
-            var mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             Screwdriver.transform.position = new Vector3(mousePosition.x, mousePosition.y, -5);
         }
+
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Screwdriver.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
@@ -91,11 +94,15 @@ public class FixEngineController : MonoBehaviour
             //mouse was let go but we're not at the end yet
             if(!isTouchingEnd && !isMouseDownOnAnyMR)
             {
+                var rb = Screwdriver.AddComponent<Rigidbody2D>();
+                rb.gravityScale = 1.3f;
+                rb.AddTorque(120);
                 state = -2;
             }
             //we left the path
             if (!isTouchingAnyMouseReporter)
             {
+                BoomAtMousePos();
                 state = -2;
             }
             //we got to the end!!
@@ -125,6 +132,12 @@ public class FixEngineController : MonoBehaviour
             {
                 minigameTransponder.Finish(MinigameStatus.Loss);
             }
+        }
+
+        void BoomAtMousePos()
+        {
+            Boom.transform.position = new Vector3(mousePosition.x, mousePosition.y, Boom.transform.position.z);
+            Boom.SetActive(true);
         }
     }
 
