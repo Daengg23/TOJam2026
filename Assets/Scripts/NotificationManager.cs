@@ -20,6 +20,11 @@ public class NotificationManager : MonoBehaviour
     private int currentDialogueIndex = 0;
     private DialogueSO currentDialogueSO;
 
+    [SerializeField] private Sprite mascot_normal;
+    [SerializeField] private Sprite mascot_cry;
+    [SerializeField] private Sprite mascot_smile;
+
+
     void Start()
     {
         metro = GameManager.Instance.Metro;
@@ -27,6 +32,14 @@ public class NotificationManager : MonoBehaviour
         metro.OnStationStateChanged += CreateNotification;
         nextButton.SetActive(false);
         skipButton.SetActive(false);
+    }
+
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            EndDialogue();
+        }
     }
 
     public void ResetNotificationManager()
@@ -46,12 +59,15 @@ public class NotificationManager : MonoBehaviour
         switch(stationContext.stationState)
         {
             case Station.StationState.Troubled: 
+                OnSpriteChange?.Invoke(mascot_normal);
                 message = GenerateTroubleMessage(stationContext);
                 break;
             case Station.StationState.Delayed:
+                OnSpriteChange?.Invoke(mascot_cry);
                 message = GenerateDelayMessage(stationContext);
                 break;
             case Station.StationState.Cleared:
+                OnSpriteChange?.Invoke(mascot_smile);
                 message = GenerateClearmessage(stationContext);
                 break;
             default:
@@ -63,15 +79,29 @@ public class NotificationManager : MonoBehaviour
 
     public string GenerateTroubleMessage(StationContext stationContext)
     {
-        return $"There is at {stationContext.currentMinigame.ToString()} in {stationContext.station.StationName}";;
+        return $"There is {GetTroubleName(stationContext.currentMinigame)} at {stationContext.station.StationName}";
     }
     public string GenerateDelayMessage(StationContext stationContext)
     {
-        return $"Delay at {stationContext.station.StationName}";
+        return $"Get your ass over to {stationContext.station.StationName} there's a fricking DELAY!";
     }
     public string GenerateClearmessage(StationContext stationContext)
     {
         return $"{stationContext.station.StationName} cleared!";
+    }
+
+    string GetTroubleName(Station.Minigame minigame)
+    {
+        if(minigame == Station.Minigame.FixElevator)
+        {
+            return "a <b>Broken Elevator</b>";
+        }
+        if(minigame == Station.Minigame.FixEngine)
+        {
+            return "an <b>Engine Failure</b>";
+        }
+
+        return "";
     }
 
     public void StartDialogue(DialogueSO dialogueSO)

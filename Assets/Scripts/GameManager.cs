@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float baseMaxTimeToDelay;
     [SerializeField] private float baseMinTimeToDelay;
 
-    private int currentDifficulty;
+    public int CurrentDifficulty {get; private set;}
     float elapsedTime = 0f;
 
     public Canvas LoseCanvas;
@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour
         {
             OnScoreChanged?.Invoke(CurrentScore);
         }
+
+        CurrentDifficulty = baseDifficulty + (int)CurrentScore/12;
+
+        
     }
 
     public void ResetScore()
@@ -84,7 +88,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         LoseCanvas.gameObject.SetActive(false);
-        currentDifficulty = baseDifficulty;
+        CurrentDifficulty = baseDifficulty;
         
         ResetScore();
         NotificationManager.ResetNotificationManager();

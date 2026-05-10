@@ -19,15 +19,17 @@ MonoBehaviour:
   - expression: {fileID: -7715413057357343216, guid: c3d53961d60484283af3c0d6916884e2, type: 3}
     text: Welcome to the job. You'll be working as a transit overseer.
   - expression: {fileID: -8514442416809331602, guid: 4146395592bfe468c8dd22c3b3a78930, type: 3}
-    text: When a station turns <color="yellow">YELLOW</color>, trouble is occuring.
+    text: When a station turns <color="yellow">YELLOW</color>, trouble is happening.
   - expression: {fileID: 0}
-    text: <b>CLICK AND DRAG</b> similar problems to fix them.
+    text: <b>CLICK AND DRAG</b> similar problems to fix them. They'll be represented
+      by letters.
   - expression: {fileID: 0}
     text: Leave a problem hanging and a <color="red">DELAY</color> happens! People
       <b>HATE</b> delays!
   - expression: {fileID: 8370624162599242350, guid: 160c34cf388d44c03a163c50a18630bd, type: 3}
-    text: Once your reputation takes a hit, it's one and done...
+    text: Nobody cares if you do your job properly. The public reception never goes
+      back up.
   - expression: {fileID: 0}
-    text: It ain't an easy job so try to survive while you're at it.
+    text: It ain't easy. Try to survive while you're at it.
   - expression: {fileID: -7715413057357343216, guid: c3d53961d60484283af3c0d6916884e2, type: 3}
-    text: I'll be your supervisor. I'm a also a goat btw.
+    text: I'll be your supervisor. I'm a goat btw.

@@ -59,6 +59,6 @@ public class GUIController : MonoBehaviour
 
     public void ReputationLossAction()
     {
-        reputationText.text = "" + reputationManager.CurrentReputation;
+        reputationText.text = "Reputation: " + (int)reputationManager.CurrentReputation;
     }
 }
