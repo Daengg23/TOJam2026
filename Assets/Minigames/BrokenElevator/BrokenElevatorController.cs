@@ -33,6 +33,8 @@ public class BrokenElevatorController : MonoBehaviour
     public GameObject BigX;
     public GameObject BigCheckmark;
 
+    public GameObject Boom;
+
     public TextMeshPro InstructionsText;
 
     private void Awake()
@@ -210,6 +212,10 @@ public class BrokenElevatorController : MonoBehaviour
         }
         if(stage == -2)
         {
+            if(pbPercentage > 1f)
+            {
+                Boom.SetActive(true);
+            }
             InstructionsText.SetText("FAILURE");
             BigX.SetActive(true);
             winLossAnimationTimer -= Time.deltaTime;
@@ -222,7 +228,7 @@ public class BrokenElevatorController : MonoBehaviour
 
     void SetBarPercentage(float percentage)
     {
-        if (percentage < 0f || percentage > 1f) throw new ArgumentException("percentage must be in [0 1]");
+        //if (percentage < 0f || percentage > 1f) throw new ArgumentException("percentage must be in [0 1]");
 
         float pbBgHeight = powerBarBgHeight;
 
