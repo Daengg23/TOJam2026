@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: 939e5f2a3b46e1e48bd93e3bab13d10b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2880864762619181974
+    second: 3333x2500-escalator-clipart-freedesignfile_0
+  - first:
+      213: 5213826349593287647
+    second: 3333x2500-escalator-clipart-freedesignfile_1
+  - first:
+      213: -6084194512975278913
+    second: 3333x2500-escalator-clipart-freedesignfile_2
+  - first:
+      213: -5890703931304063913
+    second: 3333x2500-escalator-clipart-freedesignfile_3
+  - first:
+      213: 2754334975000616735
+    second: 3333x2500-escalator-clipart-freedesignfile_4
+  - first:
+      213: 7909174440776525268
+    second: 3333x2500-escalator-clipart-freedesignfile_5
+  - first:
+      213: -7701281987732345494
+    second: 3333x2500-escalator-clipart-freedesignfile_6
+  - first:
+      213: -3334256948313919902
+    second: 3333x2500-escalator-clipart-freedesignfile_7
+  - first:
+      213: 5093130398090795471
+    second: 3333x2500-escalator-clipart-freedesignfile_8
+  - first:
+      213: 7491718859904296208
+    second: 3333x2500-escalator-clipart-freedesignfile_9
+  - first:
+      213: 2296077768793188707
+    second: 3333x2500-escalator-clipart-freedesignfile_10
+  - first:
+      213: 4667753905799725913
+    second: 3333x2500-escalator-clipart-freedesignfile_11
+  - first:
+      213: -7261574258516193031
+    second: 3333x2500-escalator-clipart-freedesignfile_12
+  - first:
+      213: -124417722628850499
+    second: 3333x2500-escalator-clipart-freedesignfile_13
+  - first:
+      213: 8910474440821511665
+    second: 3333x2500-escalator-clipart-freedesignfile_14
+  - first:
+      213: -5724616563760570395
+    second: 3333x2500-escalator-clipart-freedesignfile_15
+  - first:
+      213: 3544623212811091764
+    second: 3333x2500-escalator-clipart-freedesignfile_16
+  - first:
+      213: 5797646152805944515
+    second: 3333x2500-escalator-clipart-freedesignfile_17
+  - first:
+      213: 2783464003403681812
+    second: 3333x2500-escalator-clipart-freedesignfile_18
+  - first:
+      213: -1040121674926849179
+    second: 3333x2500-escalator-clipart-freedesignfile_19
+  - first:
+      213: -5725512807351997532
+    second: 3333x2500-escalator-clipart-freedesignfile_20
+  - first:
+      213: -312443977126951474
+    second: 3333x2500-escalator-clipart-freedesignfile_21
+  - first:
+      213: 3618516914725443291
+    second: 3333x2500-escalator-clipart-freedesignfile_22
+  - first:
+      213: 6038300300506707338
+    second: 3333x2500-escalator-clipart-freedesignfile_23
+  - first:
+      213: 983368307973887556
+    second: 3333x2500-escalator-clipart-freedesignfile_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_0
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 412
+        width: 2299
+        height: 1415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64c42a03cc1508d0800000000000000
+      internalID: -2880864762619181974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_1
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 56
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb5410e07b3b5840800000000000000
+      internalID: 5213826349593287647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_2
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 104
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc4abd6359909ba0800000000000000
+      internalID: -6084194512975278913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_3
+      rect:
+        serializedVersion: 2
+        x: 1471
+        y: 56
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75ccf991cf3004ea0800000000000000
+      internalID: -5890703931304063913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_4
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 56
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1f9851111d593620800000000000000
+      internalID: 2754334975000616735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_5
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 55
+        width: 69
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d56511df3803cd60800000000000000
+      internalID: 7909174440776525268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_6
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 54
+        width: 180
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d6916d5dc8f1590800000000000000
+      internalID: -7701281987732345494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_7
+      rect:
+        serializedVersion: 2
+        x: 1966
+        y: 101
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26eeedd98f65ab1d0800000000000000
+      internalID: -3334256948313919902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_8
+      rect:
+        serializedVersion: 2
+        x: 2074
+        y: 55
+        width: 24
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc912fccc1f6ea640800000000000000
+      internalID: 5093130398090795471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_9
+      rect:
+        serializedVersion: 2
+        x: 2097
+        y: 102
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 015a0b93c9ee7f760800000000000000
+      internalID: 7491718859904296208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_10
+      rect:
+        serializedVersion: 2
+        x: 2111
+        y: 55
+        width: 13
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369e699c09e4ddf10800000000000000
+      internalID: 2296077768793188707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_11
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 56
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953822e427137c040800000000000000
+      internalID: 4667753905799725913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_12
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 56
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f095037fa4b93b90800000000000000
+      internalID: -7261574258516193031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_13
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 56
+        width: 11
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbcb1fe8dbaf54ef0800000000000000
+      internalID: -124417722628850499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_14
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 39
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f51d515b4d58ab70800000000000000
+      internalID: 8910474440821511665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_15
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 56
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5efdbb9c0931e80b0800000000000000
+      internalID: -5724616563760570395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_16
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 56
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f75362808013130800000000000000
+      internalID: 3544623212811091764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_17
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 39
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc886f6570657050800000000000000
+      internalID: 5797646152805944515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_18
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 54
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41096ff73c9d0a620800000000000000
+      internalID: 2783464003403681812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_19
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 54
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5630dc2f8deb091f0800000000000000
+      internalID: -1040121674926849179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_20
+      rect:
+        serializedVersion: 2
+        x: 1967
+        y: 55
+        width: 15
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aba5d0df64ea80b0800000000000000
+      internalID: -5725512807351997532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_21
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 39
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec54323bbd9f9abf0800000000000000
+      internalID: -312443977126951474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_22
+      rect:
+        serializedVersion: 2
+        x: 2029
+        y: 55
+        width: 45
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd6d3f356fd873230800000000000000
+      internalID: 3618516914725443291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_23
+      rect:
+        serializedVersion: 2
+        x: 2097
+        y: 55
+        width: 13
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8536da812a5cc350800000000000000
+      internalID: 6038300300506707338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3333x2500-escalator-clipart-freedesignfile_24
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 54
+        width: 45
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44619281440a5ad00800000000000000
+      internalID: 983368307973887556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      3333x2500-escalator-clipart-freedesignfile_0: -2880864762619181974
+      3333x2500-escalator-clipart-freedesignfile_1: 5213826349593287647
+      3333x2500-escalator-clipart-freedesignfile_10: 2296077768793188707
+      3333x2500-escalator-clipart-freedesignfile_11: 4667753905799725913
+      3333x2500-escalator-clipart-freedesignfile_12: -7261574258516193031
+      3333x2500-escalator-clipart-freedesignfile_13: -124417722628850499
+      3333x2500-escalator-clipart-freedesignfile_14: 8910474440821511665
+      3333x2500-escalator-clipart-freedesignfile_15: -5724616563760570395
+      3333x2500-escalator-clipart-freedesignfile_16: 3544623212811091764
+      3333x2500-escalator-clipart-freedesignfile_17: 5797646152805944515
+      3333x2500-escalator-clipart-freedesignfile_18: 2783464003403681812
+      3333x2500-escalator-clipart-freedesignfile_19: -1040121674926849179
+      3333x2500-escalator-clipart-freedesignfile_2: -6084194512975278913
+      3333x2500-escalator-clipart-freedesignfile_20: -5725512807351997532
+      3333x2500-escalator-clipart-freedesignfile_21: -312443977126951474
+      3333x2500-escalator-clipart-freedesignfile_22: 3618516914725443291
+      3333x2500-escalator-clipart-freedesignfile_23: 6038300300506707338
+      3333x2500-escalator-clipart-freedesignfile_24: 983368307973887556
+      3333x2500-escalator-clipart-freedesignfile_3: -5890703931304063913
+      3333x2500-escalator-clipart-freedesignfile_4: 2754334975000616735
+      3333x2500-escalator-clipart-freedesignfile_5: 7909174440776525268
+      3333x2500-escalator-clipart-freedesignfile_6: -7701281987732345494
+      3333x2500-escalator-clipart-freedesignfile_7: -3334256948313919902
+      3333x2500-escalator-clipart-freedesignfile_8: 5093130398090795471
+      3333x2500-escalator-clipart-freedesignfile_9: 7491718859904296208
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

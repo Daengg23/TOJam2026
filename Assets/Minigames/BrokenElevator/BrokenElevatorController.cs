@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,17 +14,30 @@ public class BrokenElevatorController : MonoBehaviour
 
     public MouseReporter PowerBarBgMR;
 
+    public GameObject PowerBarBgHighlight;
     public GameObject PowerBarBg;
     public GameObject PowerBarOptimal;
     public GameObject PowerBar;
 
     public GameObject Checkmark1;
+    Glow Checkmark1Glow;
     public GameObject Checkmark2;
+    Glow Checkmark2Glow;
     public GameObject Checkmark3;
+    Glow Checkmark3Glow;
+
+    public GameObject Screw1;
+    public GameObject Screw2;
+    public GameObject Screw3;
+
+    public GameObject BigX;
+    public GameObject BigCheckmark;
+
+    public TextMeshPro InstructionsText;
 
     private void Awake()
     {
-        minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
+        //minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
     }
 
     Vector3 powerBarBgPos;
@@ -51,20 +65,27 @@ public class BrokenElevatorController : MonoBehaviour
     [SerializeField]
     float pbPercentage = 0f;
     [SerializeField]
-    int stage = -1; //-2 specifically is loss
+    int stage = -1; //-2 is loss
+
+    float winLossAnimationTimer = 1f;
+    float optimalPercentage = 0f;
     void Update()
     {
 
         if(stage == -1)
         {
-            GenerateOptimalPercentage(Random.Range(0.1f, 0.5f));
+            optimalPercentage = Random.Range(0.15f, 0.3f);
+            GenerateOptimalPercentage(optimalPercentage);
             stage++;
         }
 
         if (stage == 0) //wait for pb click
         {
+            PowerBarBgHighlight.GetComponent<Breathe>().Stop = false;
+            Screw1.GetComponent<Glow>().enabled = true;
             if (PowerBarBgMR.IsBeingClicked)
             {
+                PowerBarBgHighlight.GetComponent<Breathe>().Stop = true;
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
                 stage++;
@@ -85,10 +106,11 @@ public class BrokenElevatorController : MonoBehaviour
         {
             if(pbPercentage > minPercentage && pbPercentage < maxPercentage)
             {
-                GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+                GenerateOptimalPercentage(optimalPercentage);
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
                 Checkmark1.SetActive(true);
+                Screw1.SetActive(false);
                 stage++;
             } else
             {
@@ -97,8 +119,11 @@ public class BrokenElevatorController : MonoBehaviour
         }
         if(stage == 3) //wait for pb click 
         {
+            PowerBarBgHighlight.GetComponent<Breathe>().Stop = false;
+            Screw2.GetComponent<Glow>().enabled = true;
             if (PowerBarBgMR.IsBeingClicked)
             {
+                PowerBarBgHighlight.GetComponent<Breathe>().Stop = true;
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
                 stage++;
@@ -120,10 +145,11 @@ public class BrokenElevatorController : MonoBehaviour
         {
             if (pbPercentage > minPercentage && pbPercentage < maxPercentage)
             {
-                GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+                GenerateOptimalPercentage(optimalPercentage);
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
                 Checkmark2.SetActive(true);
+                Screw2.SetActive(false);
                 stage++;
             }
             else
@@ -133,8 +159,11 @@ public class BrokenElevatorController : MonoBehaviour
         }
         if(stage == 6) //wait for pb click
         {
+            PowerBarBgHighlight.GetComponent<Breathe>().Stop = false;
+            Screw3.GetComponent<Glow>().enabled = true;
             if (PowerBarBgMR.IsBeingClicked)
             {
+                PowerBarBgHighlight.GetComponent<Breathe>().Stop = true;
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
                 stage++;
@@ -156,10 +185,11 @@ public class BrokenElevatorController : MonoBehaviour
         {
             if (pbPercentage > minPercentage && pbPercentage < maxPercentage)
             {
-                GenerateOptimalPercentage(Random.Range(0.3f, 0.7f));
+                GenerateOptimalPercentage(optimalPercentage);
                 pbPercentage = 0f;
                 SetBarPercentage(0.02f);
                 Checkmark3.SetActive(true);
+                Screw3.SetActive(false);
                 stage++;
             }
             else
@@ -169,11 +199,24 @@ public class BrokenElevatorController : MonoBehaviour
         }
         if(stage == 9) //victory
         {
-            minigameTransponder.Finish(MinigameStatus.Win);
+            InstructionsText.SetText("SUCCESS");
+            BigCheckmark.SetActive(true);
+            winLossAnimationTimer -= Time.deltaTime;
+            if (winLossAnimationTimer < 0)
+            {
+                minigameTransponder.Finish(MinigameStatus.Win);
+            }
+            
         }
         if(stage == -2)
         {
-            minigameTransponder.Finish(MinigameStatus.Loss);
+            InstructionsText.SetText("FAILURE");
+            BigX.SetActive(true);
+            winLossAnimationTimer -= Time.deltaTime;
+            if (winLossAnimationTimer < 0)
+            {
+                minigameTransponder.Finish(MinigameStatus.Loss);
+            }
         }
     }
 
