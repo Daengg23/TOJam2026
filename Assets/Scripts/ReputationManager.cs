@@ -3,7 +3,7 @@ using System;
 
 public class ReputationManager : MonoBehaviour
 {   
-    public Action<float> OnReputationLoss;
+    public Action OnReputationChanged;
 
     private Metro metro;
     [SerializeField] private float maxReputation;
@@ -20,6 +20,7 @@ public class ReputationManager : MonoBehaviour
     public void ResetReputation()
     {
         CurrentReputation = maxReputation;
+        OnReputationChanged?.Invoke();
     }
 
     public void UpdateReputationLoss() {
@@ -35,7 +36,12 @@ public class ReputationManager : MonoBehaviour
         }
 
         if(repLossed) {
-            OnReputationLoss?.Invoke(totalRepLossed);
+            OnReputationChanged?.Invoke();
+        }
+
+        if(CurrentReputation <= 0)
+        {
+            GameManager.Instance.LoseGame();
         }
     }
 

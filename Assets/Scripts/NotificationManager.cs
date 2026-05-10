@@ -46,16 +46,32 @@ public class NotificationManager : MonoBehaviour
         switch(stationContext.stationState)
         {
             case Station.StationState.Troubled: 
-                message = $"There is a {stationContext.currentMinigame.ToString()} in {stationContext.station.StationName}";
+                message = GenerateTroubleMessage(stationContext);
                 break;
             case Station.StationState.Delayed:
-                message = $"Delay in {stationContext.station.StationName}";
+                message = GenerateDelayMessage(stationContext);
+                break;
+            case Station.StationState.Cleared:
+                message = GenerateClearmessage(stationContext);
                 break;
             default:
                 break;
         }
         
         OnNotificationMessage?.Invoke(message);
+    }
+
+    public string GenerateTroubleMessage(StationContext stationContext)
+    {
+        return $"There is at {stationContext.currentMinigame.ToString()} in {stationContext.station.StationName}";;
+    }
+    public string GenerateDelayMessage(StationContext stationContext)
+    {
+        return $"Delay at {stationContext.station.StationName}";
+    }
+    public string GenerateClearmessage(StationContext stationContext)
+    {
+        return $"{stationContext.station.StationName} cleared!";
     }
 
     public void StartDialogue(DialogueSO dialogueSO)
@@ -96,7 +112,7 @@ public class NotificationManager : MonoBehaviour
 
         currentDialogueSO = null;
         currentDialogueIndex = 0;
-        OnSpriteChange = default;
+        OnSpriteChange?.Invoke(TutorialDialogue.defaultSprite);
         nextButton.SetActive(false);
         skipButton.SetActive(false);
     }

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private int currentDifficulty;
     float elapsedTime = 0f;
 
+    public Canvas LoseCanvas;
     public Metro Metro;
     public ReputationManager Reputation;
     public TroubleMaker TroubleMaker;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public GameState CurrentGameState;
     public int CurrentScore {get; private set;}
+    public int Highscore {get; private set;}
 
     public float CalculateTimeToDelay(Station station)
     {
@@ -60,8 +62,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if(CurrentGameState == GameState.MetroActive) return;
-        
         CurrentGameState = GameState.MetroActive;
 
         NotificationManager.StartDialogue(NotificationManager.TutorialDialogue);
@@ -70,8 +70,20 @@ public class GameManager : MonoBehaviour
     
     }
 
+    public void LoseGame()
+    {
+        CurrentGameState = GameState.MetroInactive;
+        LoseCanvas.gameObject.SetActive(true);
+        if(CurrentScore > Highscore)
+        {
+            Highscore = CurrentScore;
+            OnScoreChanged?.Invoke(CurrentScore);
+        }
+    }
+
     public void ResetGame()
     {
+        LoseCanvas.gameObject.SetActive(false);
         currentDifficulty = baseDifficulty;
         
         ResetScore();
@@ -92,10 +104,22 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        LoseCanvas.gameObject.SetActive(false);
     }
+
+    bool gameStarted = false;
 
     void Update()
     {
+        if(!gameStarted)
+        {
+            gameStarted = true;
+            ResetGame();
+            StartGame();
+
+        }
+
         if(CurrentGameState == GameState.MetroActive)
         {
             Reputation.UpdateReputationLoss();
@@ -104,7 +128,4 @@ public class GameManager : MonoBehaviour
         }
         
     }
-
-    // tojam2026-06@georgebrowncollege.onmicrosoft.com
-    // ToJ@m2026!
 }
