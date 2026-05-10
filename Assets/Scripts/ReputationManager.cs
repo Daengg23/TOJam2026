@@ -38,4 +38,9 @@ public class ReputationManager : MonoBehaviour
             OnReputationLoss?.Invoke(totalRepLossed);
         }
     }
+
+    public void SetReputation(float reputation)
+    {
+        this.CurrentReputation = reputation;
+    }
 }

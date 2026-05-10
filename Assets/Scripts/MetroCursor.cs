@@ -107,16 +107,28 @@ public class MetroCursor : MonoBehaviour
 
             if (status == MinigameStatus.Win)
             {
+                Debug.Log("MetroCursor: WON THE MINIGAME");
                 foreach (var station in selectedStations)
                 {
                     station.ResetStation();
                 }
                 ResetStationChain();
-                Debug.Log("MetroCursor: WON THE MINIGAME");
             }
             else
             {
                 Debug.Log("MetroCursor: LOST THE MINIGAME");
+                ReputationManager r = GameManager.Instance.Reputation;
+                float reputationLoss = 0f;
+                foreach(var station in selectedStations)
+                {
+                    reputationLoss += 3 * station.BasePopulation;
+                }
+                r.SetReputation(r.CurrentReputation - reputationLoss);
+                foreach (var station in selectedStations)
+                {
+                    station.ResetStation();
+                }
+                ResetStationChain();
             }
         }
         
