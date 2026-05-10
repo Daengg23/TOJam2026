@@ -133,7 +133,7 @@ public class FixEngineController : MonoBehaviour
 
         const float xDistanceFromMazeEnd = 12f;
 
-        int segments = 3;
+        int segments = Random.Range(2, 4);
 
         float startRandomY = Random.Range(-1f, 1f) * 4f;
         //the start object is shifted up or down the screen a random amount
@@ -150,7 +150,7 @@ public class FixEngineController : MonoBehaviour
         for (int i = 0; i < segments; i++)
         {
 
-            float width = 0.5f; //TODO randomize this
+            float width = Random.Range(0.7f, 1.1f);
 
             float randomXToTheLeft = xDistanceFromMazeEnd / segments * Random.Range(0f, 1.5f);
             Vector2 nextPoint = new Vector2(prevPoint.x - randomXToTheLeft, Random.Range(-1f, 1f) * 4f); //TODO bell curve distribute the Y offset
@@ -164,7 +164,7 @@ public class FixEngineController : MonoBehaviour
             Vector2 midpoint = prevPoint + (nextPoint - prevPoint) / 2;
             var segmentGO = Instantiate(SegmentPrefab);
             segmentGO.transform.position = midpoint;
-            segmentGO.transform.localScale = new Vector3((prevPoint - nextPoint).magnitude, segmentGO.transform.localScale.y, segmentGO.transform.localScale.z);
+            segmentGO.transform.localScale = new Vector3((prevPoint - nextPoint).magnitude, width, segmentGO.transform.localScale.z);
 
             //point at the next point
             Vector2 diff = nextPoint - prevPoint;
