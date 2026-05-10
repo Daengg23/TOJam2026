@@ -3248,6 +3248,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088651900}
   m_CullTransparentMesh: 1
+--- !u!114 &1106293541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1378064529709254863, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+  m_PrefabInstance: {fileID: 1309101560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1116765305
 GameObject:
   m_ObjectHideFlags: 0
@@ -4335,6 +4346,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4382379139350849123, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
+      propertyPath: TextMeshProUGUI
+      value: 
+      objectReference: {fileID: 1106293541}
     - target: {fileID: 4708481598999339021, guid: 88c8b78e222ead34797265cefe1a00ef, type: 3}
       propertyPath: m_Name
       value: TopBar
