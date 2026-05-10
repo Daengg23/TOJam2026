@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6bdabf7c0e5d95048882cd47b0663270
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - OnMouseDownAudio: {fileID: 8300000, guid: 5f71ed4c576f2ec4aa7e814c0b7ba648, type: 3}
+  - OnMouseOverAudio: {fileID: 8300000, guid: 7382bed88a040d64dabca1738729b7bd, type: 3}
+  - AudioSource: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
