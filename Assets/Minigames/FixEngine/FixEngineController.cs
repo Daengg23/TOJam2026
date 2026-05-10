@@ -115,21 +115,25 @@ public class FixEngineController : MonoBehaviour
 
         if(state == 2) //WIN!!
         {
+            GameManager.Instance.CurrentGameState = GameManager.GameState.MetroInactive;
             BigCheckmark.SetActive(true);
             InstructionText.SetText("SUCCESS");
             EndAnimationTimer -= Time.deltaTime;
             if (EndAnimationTimer < 0)
             {
+                GameManager.Instance.CurrentGameState = GameManager.GameState.MetroActive;
                 minigameTransponder.Finish(MinigameStatus.Win);
             }
         }
         if(state == -2)
         {
+            GameManager.Instance.CurrentGameState = GameManager.GameState.MetroInactive;
             BigX.SetActive(true);
             InstructionText.SetText("FAILURE");
             EndAnimationTimer -= Time.deltaTime;
             if(EndAnimationTimer < 0)
             {
+                GameManager.Instance.CurrentGameState = GameManager.GameState.MetroActive;
                 minigameTransponder.Finish(MinigameStatus.Loss);
             }
         }
