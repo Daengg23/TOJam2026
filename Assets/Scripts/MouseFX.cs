@@ -1,8 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(Collider2D))]
-public class MouseFX : MonoBehaviour
+public class MouseFX : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     public AudioClip OnMouseDownAudio;
     public AudioClip OnMouseOverAudio;
@@ -58,5 +59,20 @@ public class MouseFX : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        OnMouseExit();
+    }
+
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    {
+        OnMouseEnter();
+    }
+
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    {
+        OnMouseDown();
     }
 }
