@@ -39,7 +39,7 @@ public class BrokenElevatorController : MonoBehaviour
 
     private void Awake()
     {
-        //minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
+        minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
     }
 
     Vector3 powerBarBgPos;

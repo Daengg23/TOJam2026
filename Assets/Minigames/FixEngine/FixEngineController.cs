@@ -26,7 +26,7 @@ public class FixEngineController : MonoBehaviour
 
     private void Awake()
     {
-        //minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
+        minigameTransponder = FindObjectsByType<MinigameTransponder>().Single();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

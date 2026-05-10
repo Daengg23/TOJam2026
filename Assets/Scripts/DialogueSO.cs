@@ -12,5 +12,6 @@ public class DialogueSO : ScriptableObject
 public class DialogueLine
 {
     public Sprite expression;
+    [TextArea(3, 10)]
     public string text;
 }

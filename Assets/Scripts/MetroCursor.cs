@@ -35,6 +35,8 @@ public class MetroCursor : MonoBehaviour
 
         foreach(var station in metro.Stations)
         {
+            station.RemoveEmphasisStation();
+
             if(station.CurrentMinigame == selectedStations[0].CurrentMinigame)
             {
                 station.EmphasizeStation();
@@ -60,13 +62,17 @@ public class MetroCursor : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             holdActive = true;
-            EmphasizeAllSimilarMinigames();
         }
         //left click release
         if(Input.GetMouseButtonUp(0))
         {
             holdActive = false;
             StopStationChain();
+        }
+
+        if(holdActive)
+        {
+            EmphasizeAllSimilarMinigames();
         }
     }
 

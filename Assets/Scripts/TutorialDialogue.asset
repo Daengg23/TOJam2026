@@ -12,13 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f96ae2e70c246b8ab5d7d9a21ebd3a, type: 3}
   m_Name: TutorialDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
-  defaultSprite: {fileID: 21300000, guid: 59cefd12c2c554498b0b17c72d44f988, type: 3}
+  defaultSprite: {fileID: -8514442416809331602, guid: 4146395592bfe468c8dd22c3b3a78930, type: 3}
   Lines:
+  - expression: {fileID: -8514442416809331602, guid: 4146395592bfe468c8dd22c3b3a78930, type: 3}
+    text: So you're the new kid, eh?
+  - expression: {fileID: -7715413057357343216, guid: c3d53961d60484283af3c0d6916884e2, type: 3}
+    text: Welcome to the job. You'll be working as a transit overseer.
+  - expression: {fileID: -8514442416809331602, guid: 4146395592bfe468c8dd22c3b3a78930, type: 3}
+    text: When a station turns <color="yellow">YELLOW</color>, trouble is happening.
   - expression: {fileID: 0}
-    text: Testing 123
+    text: <b>CLICK AND DRAG</b> similar problems to fix them. They'll be represented
+      by letters.
   - expression: {fileID: 0}
-    text: hye pal can you hear me?
-  - expression: {fileID: 21300000, guid: 2782e4931cee14e5cb9204903b8d5436, type: 3}
-    text: pixel test
+    text: Leave a problem hanging and a <color="red">DELAY</color> happens! People
+      <b>HATE</b> delays!
+  - expression: {fileID: 8370624162599242350, guid: 160c34cf388d44c03a163c50a18630bd, type: 3}
+    text: Nobody cares if you do your job properly. The public reception never goes
+      back up.
   - expression: {fileID: 0}
-    text: 1 goat 2 goat 3 goat
+    text: It ain't easy. Try to survive while you're at it.
+  - expression: {fileID: -7715413057357343216, guid: c3d53961d60484283af3c0d6916884e2, type: 3}
+    text: I'll be your supervisor. I'm a goat btw.

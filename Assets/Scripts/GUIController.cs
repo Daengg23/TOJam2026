@@ -10,13 +10,15 @@ public class GUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI reputationText;
     [SerializeField] private TextMeshProUGUI notificationText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private TextMeshProUGUI highscoreText;
 
     [SerializeField] private Image mascotImage;
 
     void Start()
     {
         reputationManager = GameManager.Instance.Reputation;
-        reputationManager.OnReputationLoss += ReputationLossAction;
+        reputationManager.OnReputationChanged += ReputationLossAction;
 
         notificationManager = GameManager.Instance.NotificationManager;
         notificationManager.OnNotificationMessage += NotificationMessageAction;
@@ -27,10 +29,21 @@ public class GUIController : MonoBehaviour
 
     public void ScoreChangedAction(int score)
     {
+        var dahCurrentScore = GetDaysAndHours(score);
+        var dahHighScore = GetDaysAndHours(GameManager.Instance.Highscore);
+
+        scoreText.text = $"Survived: {dahCurrentScore}";
+        finalScoreText.text = $"Survived:  {dahCurrentScore}";
+        highscoreText.text = $"Highscore: {dahHighScore}";
+    }
+
+    public string GetDaysAndHours(int score)
+    {
         int days = score/24;
         int hours = score % 24;
 
-        scoreText.text = $"Survived: {(days > 0 ? days+"d" : "")} {hours}h";
+        string daysAndHours = $"{(days > 0 ? days+"d" : "")} {hours}h";
+        return daysAndHours;
     }
 
     public void NotificationMessageAction(string text)
@@ -44,8 +57,8 @@ public class GUIController : MonoBehaviour
         mascotImage.sprite = sprite;
     }
 
-    public void ReputationLossAction(float amountLoss)
+    public void ReputationLossAction()
     {
-        reputationText.text = "" + reputationManager.CurrentReputation;
+        reputationText.text = "Reputation: " + (int)reputationManager.CurrentReputation;
     }
 }
