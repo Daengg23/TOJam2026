@@ -121,7 +121,7 @@ public class MetroCursor : MonoBehaviour
                 float reputationLoss = 0f;
                 foreach(var station in selectedStations)
                 {
-                    reputationLoss += 3 * station.BasePopulation;
+                    reputationLoss += 3 * station.BasePopulation * 10;
                 }
                 r.SetReputation(r.CurrentReputation - reputationLoss);
                 foreach (var station in selectedStations)

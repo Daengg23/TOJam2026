@@ -1104,6 +1104,10 @@ MonoBehaviour:
   maxPercentage: 0
   pbPercentage: 0
   stage: -1
+  MinOptimalPercentage: 0.07
+  MaxOptimalPercentage: 0.2
+  PowerBarInitialSpeed: 0.08
+  PowerBarAcceleration: 30
 --- !u!1 &820245862
 GameObject:
   m_ObjectHideFlags: 0

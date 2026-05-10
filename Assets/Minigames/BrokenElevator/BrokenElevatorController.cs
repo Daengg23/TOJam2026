@@ -57,7 +57,7 @@ public class BrokenElevatorController : MonoBehaviour
     void IncreasePBPercentage()
     {
         //first float controls how fast it starts off, second how much it accelerates
-        pbPercentage += Time.deltaTime * 0.047f * (1f+pbPercentage*50);
+        pbPercentage += Time.deltaTime * PowerBarInitialSpeed * (1f+pbPercentage*PowerBarAcceleration);
     }
 
     [SerializeField]
@@ -69,6 +69,12 @@ public class BrokenElevatorController : MonoBehaviour
     [SerializeField]
     int stage = -1; //-2 is loss
 
+    public float MinOptimalPercentage = 0.07f;
+    public float MaxOptimalPercentage = 0.2f;
+
+    public float PowerBarInitialSpeed = 0.055f;
+    public float PowerBarAcceleration = 50f;
+
     float winLossAnimationTimer = 1f;
     float optimalPercentage = 0f;
     void Update()
@@ -76,7 +82,7 @@ public class BrokenElevatorController : MonoBehaviour
 
         if(stage == -1)
         {
-            optimalPercentage = Random.Range(0.15f, 0.3f);
+            optimalPercentage = Random.Range(MinOptimalPercentage, MaxOptimalPercentage);
             GenerateOptimalPercentage(optimalPercentage);
             stage++;
         }
