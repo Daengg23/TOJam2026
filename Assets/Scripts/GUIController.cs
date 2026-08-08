@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GUIController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI notificationText;
     [SerializeField] private TextMeshProUGUI scoreText;
 
+    [SerializeField] private Image mascotImage;
+
     void Start()
     {
         reputationManager = GameManager.Instance.Reputation;
@@ -17,6 +20,7 @@ public class GUIController : MonoBehaviour
 
         notificationManager = GameManager.Instance.NotificationManager;
         notificationManager.OnNotificationMessage += NotificationMessageAction;
+        notificationManager.OnSpriteChange += SpriteChangeAction;
 
         GameManager.Instance.OnScoreChanged += ScoreChangedAction;
     }
@@ -32,6 +36,12 @@ public class GUIController : MonoBehaviour
     public void NotificationMessageAction(string text)
     {
         notificationText.text = text;
+    }
+
+    public void SpriteChangeAction(Sprite sprite)
+    {
+        if(sprite == null) return;
+        mascotImage.sprite = sprite;
     }
 
     public void ReputationLossAction(float amountLoss)

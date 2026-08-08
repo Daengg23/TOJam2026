@@ -6,8 +6,9 @@ using Random = UnityEngine.Random;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.EventSystems;
+using TMPro;
 
-public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {   
     public Action<Station> OnCleared;
     public Action<Station> OnTroubled;
@@ -34,7 +35,13 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     [SerializeField] private Image stationIcon;
     [SerializeField] private Image markedIcon;
-    [SerializeField] private Slider troubleSlider;
+    [SerializeField] private TextMeshProUGUI minigameText;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float normalScale = 1f;
+    [SerializeField] private float emphScale = 1.25f;
+    [SerializeField] private float demphAlpha = 0.1f;
+
+    [Header("Unique Properties")]
 
     public string StationName;
 
@@ -44,7 +51,7 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private float troubleTimer;
     private float delayTimer;
     private RectTransform rectTransform;
-
+    
     [HideInInspector] public StationState CurrentState {get; private set;}
 
     void Awake()
@@ -62,12 +69,10 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void ResetStation()
     {
         StopAllCoroutines();
-        CurrentMinigame = Minigame.None;
+        SetMinigame(Minigame.None);
         SetStationState(StationState.Cleared);
         troubleTimer = 0f;
         delayTimer = 0f;
-        troubleSlider.value = 1f;
-        troubleSlider.gameObject.SetActive(false); 
     }
 
     public void SetStationState(StationState state)
@@ -93,6 +98,28 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         
     }
 
+    public void SetMinigame(Minigame minigame)
+    {
+        Minigame minigameToCheck = minigame;
+        CurrentMinigame = minigame;
+
+        switch(minigameToCheck)
+        {
+            case Minigame.None:
+                minigameText.text = "";
+                break;
+            case Minigame.CleanupTrack:
+                minigameText.text = "CL";
+                break;
+            case Minigame.FixEngine:
+                minigameText.text = "F";
+                break;
+            case Minigame.CatchPassenger:
+                minigameText.text = "C";
+                break;
+        }
+    }
+
     public void StartTrouble()
     {
         if(CurrentState != StationState.Troubled)
@@ -105,14 +132,14 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void PickMinigame()
     {
-        int ranInt = Random.Range(1, 3);
-        CurrentMinigame = (Minigame) ranInt;
+        int ranInt = Random.Range(1, 2);
+        SetMinigame((Minigame) ranInt);
         OnMinigamePicked?.Invoke(this);
     }
 
     public IEnumerator WaitForStationDelay(float time)
     {   
-        troubleSlider.gameObject.SetActive(true);
+
         while(CurrentState == StationState.Troubled)
         {
             troubleTimer += Time.deltaTime;
@@ -123,10 +150,8 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
                 break;
             }
 
-            troubleSlider.value = 1 - troubleTimer/time;
+            stationIcon.color = Color.Lerp(Color.yellow, Color.red, troubleTimer/time);
         }
-        troubleSlider.gameObject.SetActive(false);
-        troubleSlider.value = 0f;
 
         if(CurrentState == StationState.Troubled)
         {
@@ -155,23 +180,22 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         return context;
     }
 
-    void OnDrawGizmos() {
-        if(CurrentMinigame != Minigame.None)
-        {
-            Handles.color = Color.cyan;
-            Handles.Label(transform.position + Vector3.up, CurrentMinigame.ToString());
-
-        }
-    }
-
     public void EmphasizeStation()
     {
-        SetRectScale(1.5f);
+        SetRectScale(emphScale);
+        canvasGroup.alpha = 1f;
+    }
+
+    public void RemoveEmphasisStation()
+    {
+        SetRectScale(normalScale);
+        canvasGroup.alpha = 1f;
     }
 
     public void DemphasizeStation()
     {
-        SetRectScale(1f);
+        SetRectScale(normalScale);
+        canvasGroup.alpha = demphAlpha;
     }
 
     public void ShowMarked()
@@ -195,17 +219,17 @@ public class Station : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.Instance.MetroCursor.PointerEnter(eventData, gameObject);
+        GameManager.Instance.MetroCursor.PointerExit(eventData, gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameManager.Instance.MetroCursor.PointerExit(eventData, gameObject);
+        GameManager.Instance.MetroCursor.PointerEnter(eventData, gameObject);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        GameManager.Instance.MetroCursor.PointerClick(eventData, gameObject);
+        GameManager.Instance.MetroCursor.ClickStation(this);
     }
 }
 

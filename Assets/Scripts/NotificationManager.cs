@@ -1,40 +1,103 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationManager : MonoBehaviour
 {
 
     public Action<string> OnNotificationMessage;
+    public Action<Sprite> OnSpriteChange;
 
     private Metro metro;
+
+    [Header("Dialogue System")]
+    [SerializeField] private GameObject nextButton;
+    [SerializeField] private GameObject skipButton;
+
+    public DialogueSO TutorialDialogue;
+
+    private int currentDialogueIndex = 0;
+    private DialogueSO currentDialogueSO;
 
     void Start()
     {
         metro = GameManager.Instance.Metro;
 
         metro.OnStationStateChanged += CreateNotification;
+        nextButton.SetActive(false);
+        skipButton.SetActive(false);
     }
 
     public void ResetNotificationManager()
     {
         OnNotificationMessage?.Invoke("");
+        OnSpriteChange?.Invoke(TutorialDialogue.defaultSprite);
+        currentDialogueIndex = 0;
+        currentDialogueSO = null;
+        nextButton.SetActive(false);
+        skipButton.SetActive(false);
     }
 
     void CreateNotification(StationContext stationContext)
     {
         string message = "";
-        
-        if(stationContext.stationState == Station.StationState.Troubled)
-        {   
-            message = $"There is a {stationContext.currentMinigame.ToString()} in {stationContext.station.StationName}";
-        }
-        else if(stationContext.stationState == Station.StationState.Delayed)
+
+        switch(stationContext.stationState)
         {
-            message = $"Delay in {stationContext.station.StationName}";
+            case Station.StationState.Troubled: 
+                message = $"There is a {stationContext.currentMinigame.ToString()} in {stationContext.station.StationName}";
+                break;
+            case Station.StationState.Delayed:
+                message = $"Delay in {stationContext.station.StationName}";
+                break;
+            default:
+                break;
+        }
+        
+        OnNotificationMessage?.Invoke(message);
+    }
+
+    public void StartDialogue(DialogueSO dialogueSO)
+    {
+        if(dialogueSO == null) {
+            Debug.LogError("DialogueSO is null");
+            return;
         }
 
+        GameManager.Instance.CurrentGameState = GameManager.GameState.MetroInactive;
 
-        OnNotificationMessage?.Invoke(message);
+        currentDialogueSO = dialogueSO;
+        currentDialogueIndex = 0;
+        nextButton.SetActive(true);
+        skipButton.SetActive(true);
+        OnSpriteChange?.Invoke(TutorialDialogue.defaultSprite);
+        NextLine();
+    }
 
+    public void NextLine()
+    {
+        if(currentDialogueSO == null) return;
+
+        if(currentDialogueIndex < currentDialogueSO.Lines.Count) {
+            OnNotificationMessage?.Invoke(currentDialogueSO.Lines[currentDialogueIndex].text);
+            OnSpriteChange?.Invoke(currentDialogueSO.Lines[currentDialogueIndex].expression);
+        } else
+        {
+            EndDialogue();
+        }
+
+        currentDialogueIndex++;
+    }
+
+    public void EndDialogue()
+    {
+        GameManager.Instance.CurrentGameState = GameManager.GameState.MetroActive;
+
+        currentDialogueSO = null;
+        currentDialogueIndex = 0;
+        OnSpriteChange = default;
+        nextButton.SetActive(false);
+        skipButton.SetActive(false);
     }
 }
